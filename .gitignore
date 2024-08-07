@@ -1,0 +1,13 @@
+/.cache
+/.work
+/_output
+/results
+/.idea
+/.kclvm
+
+*.xpkg
+kubeconfig
+
+apis/composition.yaml
+apis/kcl.mod
+apis/kcl.mod.lock

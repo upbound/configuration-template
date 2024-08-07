@@ -1,0 +1,22 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: xtemplates.example.org
+spec:
+  writeConnectionSecretsToNamespace: upbound-system
+  compositeTypeRef:
+    apiVersion: example.org/v1alpha1
+    kind: XTemplate
+  mode: Pipeline
+  pipeline:
+    - step: kcl
+      functionRef:
+        name: crossplane-contrib-function-kcl
+      input:
+        apiVersion: krm.kcl.dev/v1alpha1
+        kind: KCLRun
+        spec:
+          source: main.k
+    - step: automatically-detect-ready-composed-resources
+      functionRef:
+        name: crossplane-contrib-function-auto-ready

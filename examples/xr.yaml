@@ -1,0 +1,15 @@
+apiVersion: example.org/v1alpha1
+kind: Template
+metadata:
+  name: configuration
+  namespace: default
+  annotations:
+    render.crossplane.io/composition-path: apis/composition.yaml
+    render.crossplane.io/function-path: examples/functions.yaml
+    uptest.upbound.io/disable-import: "true"
+spec:
+  parameters:
+    deletionPolicy: Delete
+    providerConfigName: default
+    region: eu-central-1
+    versioning: true
