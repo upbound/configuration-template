@@ -45,7 +45,7 @@ _items += [ v1beta2.BucketVersioning {
             status: "Enabled"
         }
     }
-}]
+} if get(oxr, "spec.parameters.versioning", "False") else {}]
 
 items = [
     i for r in [_items]
