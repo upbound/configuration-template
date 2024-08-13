@@ -27,28 +27,25 @@ _defaults = {
     providerConfigRef.name: get(oxr, "spec.providerConfigName", "default")
 }
 
-_items = [{
-    apiVersion: v1beta2.Bucket.apiVersion
-    kind: v1beta2.Bucket.kind
+_items = []
+
+_items += [ v1beta2.Bucket{
     metadata: _metadata("bucket")
     spec: _defaults
 }]
 
-_items += [{
-    apiVersion: v1beta2.BucketVersioning.apiVersion
-    kind: v1beta2.BucketVersioning.kind
+_items += [ v1beta2.BucketVersioning {
     metadata: _metadata("bucketVersioning")
-    spec: _defaults | {
-        forProvider: v1beta2.BucketVersioning.spec.forProvider {
-            bucketSelector: v1beta2.BucketVersioning.spec.forProvider.bucketSelector{
-                matchControllerRef: True,
-            }
-            versioningConfiguration: v1beta2.BucketVersioning.spec.forProvider.versioningConfiguration{
-                status: "Enabled"
-            }
-        },
+    spec: _defaults
+    spec.forProvider:{
+        bucketSelector: {
+            matchControllerRef: True,
+        }
+        versioningConfiguration:{
+            status: "Enabled"
+        }
     }
-} if get(oxr, "spec.parameters.versioning", "False") else {}]
+}]
 
 items = [
     i for r in [_items]
