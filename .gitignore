@@ -9,5 +9,6 @@
 kubeconfig
 
 apis/composition.yaml
-apis/kcl.mod
 apis/kcl.mod.lock
+apis/.kclvm
+.crossplane

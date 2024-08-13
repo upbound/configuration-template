@@ -1,4 +1,5 @@
 import regex
+import crds.v1beta2 as v1beta2
 
 oxr = option("params").oxr
 _ocds = option("params").ocds
@@ -26,24 +27,23 @@ _defaults = {
     providerConfigRef.name: get(oxr, "spec.providerConfigName", "default")
 }
 
-_items = [{
-    apiVersion: "s3.aws.upbound.io/v1beta2"
-    kind: "Bucket"
+_items = []
+
+_items += [ v1beta2.Bucket{
     metadata: _metadata("bucket")
     spec: _defaults
 }]
 
-_items += [{
-    apiVersion: "s3.aws.upbound.io/v1beta2"
-    kind: "BucketVersioning"
+_items += [ v1beta2.BucketVersioning {
     metadata: _metadata("bucketVersioning")
-    spec: _defaults | {
-        forProvider: {
-            bucketSelector: {
-                matchControllerRef: True
-            },
-            versioningConfiguration.status: "Enabled"
-        },
+    spec: _defaults
+    spec.forProvider:{
+        bucketSelector: {
+            matchControllerRef: True,
+        }
+        versioningConfiguration:{
+            status: "Enabled"
+        }
     }
 } if get(oxr, "spec.parameters.versioning", "False") else {}]
 
