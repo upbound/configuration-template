@@ -8,7 +8,5 @@
 *.xpkg
 kubeconfig
 
-apis/composition.yaml
-apis/kcl.mod.lock
-apis/.kclvm
+**/.kclvm
 .crossplane

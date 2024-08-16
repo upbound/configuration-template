@@ -21,9 +21,7 @@ spec:
     - function: xpkg.upbound.io/crossplane-contrib/function-auto-ready
       # renovate: datasource=github-releases depName=crossplane-contrib/function-auto-ready
       version: "v0.2.1"
-    - function: xpkg.upbound.io/crossplane-contrib/function-kcl
-      # renovate: datasource=github-releases depName=crossplane-contrib/function-kcl
-      version: "v0.9.0"
+    - function: ./functions/compose
     - provider: xpkg.upbound.io/upbound/provider-aws-s3
       # renovate: datasource=github-releases depName=upbound/provider-aws
       version: "v1.10.0"

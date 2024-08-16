@@ -1,0 +1,6 @@
+apiVersion: meta.pkg.upbound.io/v1alpha1
+kind: Function
+metadata:
+  name: compose
+spec:
+  base: xpkg.upbound.io/crossplane-contrib/function-kcl:v0.9.0

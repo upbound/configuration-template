@@ -1,0 +1,5 @@
+[dependencies]
+  [dependencies.crds]
+    name = "crds"
+    full_name = "models_0.0.1"
+    version = "0.0.1"
