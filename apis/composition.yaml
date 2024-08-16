@@ -9,9 +9,16 @@ spec:
     kind: XTemplate
   mode: Pipeline
   pipeline:
-  - step: kcl
+  # - step: kcl
+  #   functionRef:
+  #     name: ./compose
+  - step: python
     functionRef:
-      name: ./functions/compose
+      name: ./do-some-python
+    input:
+      apiVersion: template.fn.crossplane.io/v1beta1
+      kind: Input
+      example: "Aaa, snakes!"
   - step: automatically-detect-ready-composed-resources
     functionRef:
       name: crossplane-contrib-function-auto-ready
